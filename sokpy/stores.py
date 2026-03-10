@@ -1,4 +1,4 @@
-import sok.categories as categories
+from .categories import SOKCategories
 from .query_hashes import PRODUCT_SEARCH_HASH
 from dataclasses import dataclass
 from .pricing import SOKPricing
@@ -18,7 +18,7 @@ class SOKStore:
         self.postcode = postcode
         self.postcodeName = postcodeName
         self.weeklyOpeningHours = weeklyOpeningHours
-        self.categories = categories.SOKCategories(self)
+        self.categories = SOKCategories(self)
 
 
     def get_filtered_products(self, slug: str, limit: int = 10) -> list[SOKProduct]:

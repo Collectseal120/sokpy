@@ -1,1 +1,4 @@
 /sokpy/__pycache__
+/dist
+/sokpy.egg-info
+.pypirc
