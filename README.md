@@ -180,7 +180,7 @@ for product in chewing_gums:
 
 ## License
 
-[Specify your license here]
+MIT
 
 ## Contributing
 
