@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sokpy"
-version = "0.1.2"
+version = "0.1.5"
 description = "Unofficial Python wrapper for SOK / S-Kaupat APIs"
 readme = "README.md"
 authors = [

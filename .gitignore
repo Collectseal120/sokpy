@@ -2,3 +2,4 @@
 /dist
 /sokpy.egg-info
 .pypirc
+.pytest_cache

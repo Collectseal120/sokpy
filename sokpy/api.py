@@ -52,11 +52,13 @@ class SOKAPI:
         p_data = {"data": v for k, v in json_data["props"]["pageProps"]["apolloState"].items() if 'Product:{"id"' in k}
         p_data = p_data["data"]
 
+        url_template = p_data.get("productDetails", {}).get("productImages", {}).get("mainImage", {}).get("urlTemplate")
+
         pricing_data = p_data["pricing"]
         pricing = None
         if pricing_data != None:
             pricing = SOKPricing(pricing_data["campaignPrice"],pricing_data["lowest30DayPrice"], pricing_data["campaignPriceValidUntil"],pricing_data["regularPrice"],pricing_data["currentPrice"], pricing_data["salesUnit"], pricing_data["comparisonPrice"], pricing_data["comparisonUnit"],pricing_data["isApproximatePrice"], pricing_data["depositPrice"],pricing_data["quantityMultiplier"])
-        product = SOKProduct(p_data["id"], p_data["sokId"],p_data["name"],p_data["price"],None,pricing, p_data["basicQuantityUnit"], p_data["comparisonPrice"], p_data["comparisonUnit"], p_data["priceUnit"], p_data["isAgeLimitedByAlcohol"], p_data["frozen"], p_data["packagingLabelCodes"], p_data["brandName"], p_data["packagingLabels"], p_data["slug"])
+        product = SOKProduct(p_data["id"], p_data["sokId"],p_data["name"],p_data["price"],None,pricing, p_data["basicQuantityUnit"], p_data["comparisonPrice"], p_data["comparisonUnit"], p_data["priceUnit"], p_data["isAgeLimitedByAlcohol"], p_data["frozen"], p_data["packagingLabelCodes"], p_data["brandName"], p_data["packagingLabels"], p_data["slug"],url_template)
         return product
     def get_all_stores(self) -> list[SOKStore]:
         stores = {}

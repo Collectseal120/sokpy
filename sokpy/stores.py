@@ -60,6 +60,7 @@ class SOKStore:
     def create_product(self, product_data: dict) -> SOKProduct:
         pricing_data = product_data["pricing"]
         pricing = SOKPricing(pricing_data["campaignPrice"], pricing_data["lowest30DayPrice"], pricing_data["campaignPriceValidUntil"], pricing_data["regularPrice"], pricing_data["currentPrice"], pricing_data["salesUnit"], pricing_data["comparisonPrice"], pricing_data["comparisonUnit"], pricing_data["isApproximatePrice"], pricing_data["depositPrice"], pricing_data["quantityMultiplier"])
+        url_template = product_data.get("productDetails", {}).get("productImages", {}).get("mainImage", {}).get("urlTemplate")
         return SOKProduct(
             product_id=product_data["id"],
             sokId=product_data["sokId"],
@@ -76,7 +77,8 @@ class SOKStore:
             packagingLabelCodes=product_data["packagingLabelCodes"],
             brandName=product_data["brandName"],
             packagingLabels=product_data["packagingLabels"],
-            slug=product_data["slug"]
+            slug=product_data["slug"],
+            urlTemplate=url_template
         )
     def to_dict(self):
         return {
