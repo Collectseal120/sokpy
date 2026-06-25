@@ -6,7 +6,7 @@ A Python wrapper for the SOK (S-Group) API, providing easy access to store infor
 
 - **Store Management**: Retrieve information about S-Group stores by brand or location
 - **Product Information**: Get detailed product data including pricing, availability, and specifications
-- **Pricing Data**: Access current prices, campaign prices, and historical pricing information
+- **Pricing Data**: Access current prices, campaign prices
 - **Category Browsing**: Browse products by categories within specific stores
 
 ## Installation
