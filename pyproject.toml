@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sokpy"
-version = "0.1.5"
+version = "0.1.6"
 description = "Unofficial Python wrapper for SOK / S-Kaupat APIs"
 readme = "README.md"
 authors = [
@@ -20,3 +20,15 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/Collectseal120/sokpy"
 Repository = "https://github.com/Collectseal120/sokpy"
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+markers = [
+  "integration: live SOK API tests",
+  "regression: regression tests for known stable product and store IDs",
+]

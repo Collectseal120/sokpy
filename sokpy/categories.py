@@ -28,7 +28,19 @@ class SOKCategory:
         items = soup.find_all("div", {"class": "item-name"})
 
         for item in items:
-            href = item.parent["href"]
+            href = None
+            # Check if parent is a link (current live structure)
+            if item.parent and item.parent.has_attr("href"):
+                href = item.parent["href"]
+            # Otherwise check for child link (alternate structure)
+            else:
+                link = item.find("a")
+                if link and link.has_attr("href"):
+                    href = link["href"]
+            
+            if not href:
+                continue
+            
             child_slug = href.split("/")[-1]
             child = SOKCategory(self.store, child_slug, parent=self)
             self.add_child(child)
@@ -78,9 +90,20 @@ class SOKCategories:
 
         items = soup.find_all("div", {"class": "item-name"})
         for item in items:
-            href = item.parent["href"]
+            href = None
+            # Check if parent is a link (current live structure)
+            if item.parent and item.parent.has_attr("href"):
+                href = item.parent["href"]
+            # Otherwise check for child link (alternate structure)
+            else:
+                link = item.find("a")
+                if link and link.has_attr("href"):
+                    href = link["href"]
+            
+            if not href:
+                continue
+            
             slug = href.split("/")[-1]
-
             cat = SOKCategory(self.store, slug)
             self.add_root(cat)
 

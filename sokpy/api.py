@@ -48,9 +48,15 @@ class SOKAPI:
         data = soup.find("script", {"id": "__NEXT_DATA__"})
         json_data = json.loads(data.string)
 
+        product_entries = [
+            value
+            for key, value in json_data["props"]["pageProps"]["apolloState"].items()
+            if key.startswith('Product:{"id":"')
+        ]
+        if not product_entries:
+            raise ValueError(f"Could not find product data in __NEXT_DATA__ for id {id}")
 
-        p_data = {"data": v for k, v in json_data["props"]["pageProps"]["apolloState"].items() if 'Product:{"id"' in k}
-        p_data = p_data["data"]
+        p_data = product_entries[0]
 
         url_template = p_data.get("productDetails", {}).get("productImages", {}).get("mainImage", {}).get("urlTemplate")
 
