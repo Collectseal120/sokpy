@@ -41,7 +41,7 @@ class SOKAPI:
 
     def get_product_by_id(self,id: str) -> SOKProduct:
         url = f"https://www.s-kaupat.fi/tuote/moi/{id}"
-        response = requests.get(url)
+        response = self.session.get(url)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")
@@ -76,7 +76,7 @@ class SOKAPI:
     def get_store_by_id(self, id: str) -> SOKStore:
         url = f"https://www.s-kaupat.fi/myymala/moi/{id}"
 
-        response = requests.get(url)
+        response = self.session.get(url)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.content, "html.parser")
